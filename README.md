@@ -1,0 +1,1 @@
+Blog application backend using the serverless framework.
