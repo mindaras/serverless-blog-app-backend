@@ -1,5 +1,5 @@
 const AWS = require("aws-sdk");
-const responseConstructor = require("./responseConstructor");
+const responseConstructor = require("../responseConstructor");
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
 const EMPTY_STRING = "EMPTY_STRING";

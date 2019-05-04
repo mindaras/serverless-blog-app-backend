@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const AWS = require("aws-sdk");
-const responseConstructor = require("./responseConstructor");
+const responseConstructor = require("../responseConstructor");
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
 

@@ -59,6 +59,30 @@ functions:
           method: delete
           cors: true
 
+  signup:
+    handler: auth/signup.main
+    events:
+      - http:
+          path: signup
+          method: post
+          cors: true
+
+  signin:
+    handler: auth/signin.main
+    events:
+      - http:
+          path: signin
+          method: post
+          cors: true
+
+  refreshSession:
+    handler: auth/refreshSession.main
+    events:
+      - http:
+          path: refreshSession
+          method: post
+          cors: true
+
 resources:
   Resources:
     PostsDynamoDbTable:
