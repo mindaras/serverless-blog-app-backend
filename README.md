@@ -1,1 +1,1 @@
-Blog application backend using the serverless framework.
+Blog application backend using AWS and the serverless framework.
