@@ -1,0 +1,14 @@
+{
+  "name": "serverless-blog-app-backend",
+  "version": "1.0.0",
+  "description": "Serverless blog application backend",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mindaugas Lazauskas",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}

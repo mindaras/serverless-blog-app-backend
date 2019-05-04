@@ -1,0 +1,79 @@
+service: serverless-blog-app-backend
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-central-1
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+functions:
+  create:
+    handler: posts/create.main
+    events:
+      - http:
+          path: createPost
+          method: post
+          cors: true
+
+  update:
+    handler: posts/update.main
+    events:
+      - http:
+          path: updatePost
+          method: put
+          cors: true
+
+  getAll:
+    handler: posts/getAll.main
+    events:
+      - http:
+          path: allPosts
+          method: get
+          cors: true
+
+  get:
+    handler: posts/get.main
+    events:
+      - http:
+          path: getPost/{id}
+          method: get
+          cors: true
+
+  delete:
+    handler: posts/delete.main
+    events:
+      - http:
+          path: deletePost
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    PostsDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
