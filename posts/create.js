@@ -29,7 +29,7 @@ module.exports.main = (event, context, callback) => {
 
       documentClient.put(params, err => {
         if (err) res.error(err, "Could not create an item.");
-        else res.success(params.Item.id);
+        else res.success({ id: params.Item.id });
       });
     })
     .catch(e => res.error(401, "Unauthorized operation."));

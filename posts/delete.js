@@ -25,7 +25,7 @@ module.exports.main = (event, context, callback) => {
 
       documentClient.delete(params, err => {
         if (err) res.error(err, "Could not delete an item.");
-        else res.success(id);
+        else res.success({ id });
       });
     })
     .catch(e => res.error(401, "Unauthorized operation."));
